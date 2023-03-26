@@ -93,16 +93,8 @@ impl Panel {
         }
     }
 
-    pub fn set_path(&self, path: &Path, file_name: Option<&str>) {
-        // if file_name is some, and path is a dir
-        let path = if let (Some(name), true) = (file_name, path.is_dir()) {
-            let mut path = path.to_owned();
-            // add a name to the end of path
-            path.push(name);
-            path
-        } else {
-            path.to_owned()
-        };
+    pub fn set_path(&self, path: &Path) {
+        let path = path.to_owned();
 
         if let Some(path) = path.to_str() {
             unsafe {
@@ -165,7 +157,7 @@ impl Panel {
         }
 
         if let Some(path) = &opt.starting_directory {
-            panel.set_path(path, opt.file_name.as_deref());
+            panel.set_path(path);
         }
 
         if let Some(file_name) = &opt.file_name {
@@ -194,7 +186,7 @@ impl Panel {
         }
 
         if let Some(path) = &opt.starting_directory {
-            panel.set_path(path, opt.file_name.as_deref());
+            panel.set_path(path);
         }
 
         if let Some(file_name) = &opt.file_name {
@@ -216,7 +208,7 @@ impl Panel {
         let panel = Panel::open_panel();
 
         if let Some(path) = &opt.starting_directory {
-            panel.set_path(path, opt.file_name.as_deref());
+            panel.set_path(path);
         }
 
         if let Some(title) = &opt.title {
@@ -237,7 +229,7 @@ impl Panel {
         let panel = Panel::open_panel();
 
         if let Some(path) = &opt.starting_directory {
-            panel.set_path(path, opt.file_name.as_deref());
+            panel.set_path(path);
         }
 
         if let Some(title) = &opt.title {
@@ -263,7 +255,7 @@ impl Panel {
         }
 
         if let Some(path) = &opt.starting_directory {
-            panel.set_path(path, opt.file_name.as_deref());
+            panel.set_path(path);
         }
 
         if let Some(title) = &opt.title {
